@@ -1,3 +1,3 @@
 <?php
-echo "Ruta funcionando correctamente";
+echo "Funciona correctamente";
 ?>

@@ -3,17 +3,17 @@ class Client {
     private $conn;
     private $table_name = "clients";
 
-    public $id;
-    public $name;
-    public $lastname;
-    public $address;
-    public $email;
+    public int $id;
+    public string $name;
+    public string $lastname;
+    public string $address;
+    public string $email;
 
     public function __construct($db) {
         $this->conn = $db;
     }
 
-    public function create() {
+    public function create():bool {
         $query = "INSERT INTO " . $this->table_name . " (name, lastname, address, email) VALUES (:name, :lastname, :address, :email)";
         
         $stmt = $this->conn->prepare($query);
@@ -35,7 +35,7 @@ class Client {
         return false;
     }
 
-    public function update() {
+    public function update():bool {
         $query = "UPDATE " . $this->table_name . " SET name = :name, lastname = :lastname, address = :address, email = :email WHERE id = :id";
         
         $stmt = $this->conn->prepare($query);
@@ -59,7 +59,7 @@ class Client {
         return false;
     }
 
-    public function delete() {
+    public function delete():bool {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = :id";
 
         $stmt = $this->conn->prepare($query);
@@ -75,7 +75,7 @@ class Client {
         return false;
     }
 
-    public function getAllClients() {
+    public function getAllClients(): ?array {
         $query = "SELECT id, name, lastname, address, email FROM " . $this->table_name;
 
         $stmt = $this->conn->prepare($query);

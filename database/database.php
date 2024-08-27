@@ -18,7 +18,7 @@ class Database {
         $this->password = $_ENV['DB_PASS'];
     }
 
-    public function getConnection() {
+    public function getConnection(): ?PDO {
         $this->conn = null;
 
         try {
