@@ -45,14 +45,11 @@ class User {
     }
 
     public function getUserData() {
-        // Código para obtener los datos del usuario autenticado
-        // Por ejemplo, puedes hacer una consulta a la base de datos para obtener la información
         $query = "SELECT id, name, lastname, nickname, email, phone FROM users WHERE nickname = :nickname";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':nickname', $this->nickname);
         $stmt->execute();
         
-        // Suponiendo que solo hay un resultado, obtenemos el primer resultado
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         
         return $user;
